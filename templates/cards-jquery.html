@@ -8,19 +8,17 @@
 
     Name <input type="text" id="nameField">
     Skill <input type="text" id="skillField">
-    <button id="addCard">Add</button>
-
-    <h2>Trading Cards</h2>
-
+    <button id="addCard">Add this button</button>
   </div>
 
+  <h2>Trading Cards - JQuery Style</h2>
   <div id="container"></div>
 {% endblock %}
 
 {% block js %}
   <script>
     function getCardData() {
-      // Get the up to date card data from DB.
+      // Get the up to date card data from DB (AJAX)
 
       $.get('/cards.json', insertCardData);
     }

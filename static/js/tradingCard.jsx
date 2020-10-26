@@ -1,23 +1,3 @@
-var tradingCardData = [
-  {
-    name: 'Balloonicorn',
-    skill: 'video games',
-    imgUrl: '/static/img/balloonicorn.jpg'
-  },
-
-  {
-    name: 'Float',
-    skill: 'baking pretzels',
-    imgUrl: '/static/img/float.jpg'
-  },
-
-  {
-    name: 'Llambda',
-    skill: 'knitting scarves',
-    imgUrl: '/static/img/llambda.jpg'
-  }
-];
-
 function TradingCard(props) {
   return (
     <div className="card">
@@ -30,14 +10,30 @@ function TradingCard(props) {
 
 function TradingCardContainer() {
 
-  const [cards, updateCards] = React.useState([floatCard]);
+  const floatCard = {
+    name: 'Float',
+    skill: 'baking pretzels',
+    imgUrl: '/static/img/float.jpg'
+  };
+
+  const [cards, updateCards] = React.useState([floatCard]); //do I need a semi-colon? why/why not? 
+  
+  // React.useEffect(() => {
+  //   fetch('/cards.json')
+  //     .then((response) => response.json())
+  //     .then((data) => updateCards(data))
+  // }, []);
+  const [count, setCount] = React.useState(0);
   
   React.useEffect(() => {
+    console.log('Start Use Effect')
     fetch('/cards.json')
-      .then((response) => response.json())
-      .then((data) => updateCards(data))
-  }, [])
-}
+      .then(response => response.json())
+      .then(data => console.log(data));
+    }
+  );
+
+  
 
   const tradingCards = [];
 
@@ -53,7 +49,10 @@ function TradingCardContainer() {
   }
 
   return (
-    <div>{tradingCards}</div>
+    <div>
+      {tradingCards}
+      <button onClick={() => setCount(count + 1)}>Click Me</button>
+    </div>
   );
 
 }
